@@ -36,7 +36,6 @@ const { href } = Astro.url;
 const { post } = Astro.props;
 const { title, publishedAt: rawPublishedAt, updatedAt: rawUpdatedAt, content, tags = [] } = post.attributes;
 const publishDate = new Date(rawPublishedAt);
-const updatedDate = rawUpdatedAt ? new Date(rawUpdatedAt) : null;
 ---
 
 <BaseLayout title={'title'} description={'Excerpt'} image={undefined} pageType="article" showHeader={false}>

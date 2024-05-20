@@ -15,7 +15,7 @@ const updatedAt = rawUpdated ? new Date(rawUpdated) : null;
 const excerpt = content ? getExcerpt(content, 200) : null;
 ---
 
-<a class:list={['flex justify-between items-start gap-8 group', className]} href={`/blog/${slug}/`}>
+<a class:list={['flex justify-between items-start gap-8 group', className]} href={`/reviews/${slug}`}>
     <div class="grow">
         <TitleTag
             class="text-xl leading-tight font-serif font-medium group-hover:underline group-hover:decoration-dashed group-hover:underline-offset-4 group-hover:decoration-1 sm:text-2xl"
