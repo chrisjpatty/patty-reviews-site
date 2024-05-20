@@ -1,0 +1,40 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PostPreview from '../components/PostPreview.astro';
+import siteConfig from '../data/site-config';
+import fetchApi from '../lib/strapi';
+import type { Article } from '../types/types';
+import type { GetStaticPathsOptions, Page } from 'astro';
+import Pagination from '../components/Pagination.astro';
+import { sortItemsByDateDesc } from '../utils/data-utils';
+
+export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
+    const articles = (
+        await fetchApi<Article[]>({
+            endpoint: 'blog-posts', // the content type to fetch
+            wrappedByKey: 'data' // the key to unwrap the response
+        })
+    ).sort(sortItemsByDateDesc);
+    console.log('Did this run?');
+    console.log(paginate(articles, { pageSize: siteConfig.postsPerPage || 4 }));
+    return paginate(articles, { pageSize: siteConfig.postsPerPage || 4 });
+}
+
+type Props = { page: Page<Article> };
+
+const { page } = Astro.props;
+const blog = page.data;
+---
+
+<BaseLayout description={siteConfig.description} image={siteConfig.image}>
+    {
+        blog?.length > 0 && (
+            <div class="mb-16 sm:mb-24">
+                {blog.map((post) => (
+                    <PostPreview post={post} class="mb-10 sm:mb-12" headingLevel="h3" />
+                ))}
+            </div>
+        )
+    }
+    <Pagination page={page} class="my-16 sm:my-24" />
+</BaseLayout>

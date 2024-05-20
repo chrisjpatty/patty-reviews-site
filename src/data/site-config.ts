@@ -38,29 +38,20 @@ export type SiteConfig = {
 };
 
 const siteConfig: SiteConfig = {
-    title: 'Dante',
-    subtitle: 'Minimal Astro.js theme',
-    description: 'Astro.js and Tailwind CSS theme for blog and portfolio by justgoodui.com',
+    title: 'patty.reviews',
+    description: 'Reviews by Pattys ONLY',
     image: {
         src: '/dante-preview.jpg',
-        alt: 'Dante - Astro.js and Tailwind CSS theme'
+        alt: 'patty.reviews'
+    },
+    logo: {
+        src: '/logo.svg',
+        alt: 'patty.reviews'
     },
     headerNavLinks: [
         {
             text: 'Home',
             href: '/'
-        },
-        {
-            text: 'Projects',
-            href: '/projects'
-        },
-        {
-            text: 'Blog',
-            href: '/blog'
-        },
-        {
-            text: 'Tags',
-            href: '/tags'
         }
     ],
     footerNavLinks: [
@@ -75,25 +66,21 @@ const siteConfig: SiteConfig = {
         {
             text: 'Terms',
             href: '/terms'
-        },
-        {
-            text: 'Download theme',
-            href: 'https://github.com/JustGoodUI/dante-astro-theme'
         }
     ],
     socialLinks: [
-        {
-            text: 'Dribbble',
-            href: 'https://dribbble.com/'
-        },
-        {
-            text: 'Instagram',
-            href: 'https://instagram.com/'
-        },
-        {
-            text: 'X/Twitter',
-            href: 'https://twitter.com/'
-        }
+        //     {
+        //         text: 'Dribbble',
+        //         href: 'https://dribbble.com/'
+        //     },
+        //     {
+        //         text: 'Instagram',
+        //         href: 'https://instagram.com/'
+        //     },
+        //     {
+        //         text: 'X/Twitter',
+        //         href: 'https://twitter.com/'
+        //     }
     ],
     hero: {
         title: 'Hi There & Welcome to My Corner of the Web!',

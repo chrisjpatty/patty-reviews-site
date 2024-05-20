@@ -4,8 +4,15 @@ import ArrowRight from '../../icons/ArrowRight.astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Subscribe from '../../components/Subscribe.astro';
 import { sortItemsByDateDesc, getAllTags, getPostsByTag } from '../../utils/data-utils';
+import fetchApi from '../../lib/strapi';
+import type { Article } from '../../types/types';
 
-const posts = (await getCollection('blog')).sort(sortItemsByDateDesc);
+const posts = (
+    await fetchApi<Article[]>({
+        endpoint: 'blog-posts', // the content type to fetch
+        wrappedByKey: 'data' // the key to unwrap the response
+    })
+).sort(sortItemsByDateDesc);
 const tags = getAllTags(posts).sort((tagA, tagB) => {
     const postCountTagA = getPostsByTag(posts, tagA.slug).length;
     const postCountTagB = getPostsByTag(posts, tagB.slug).length;
