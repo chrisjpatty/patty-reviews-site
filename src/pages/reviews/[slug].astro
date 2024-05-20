@@ -12,14 +12,14 @@ import type { Article } from '../../types/types';
 import { BlocksRenderer } from '@strapi/blocks-react-renderer';
 
 export async function getStaticPaths() {
-    const posts = (
-        await fetchApi<Article[]>({
-            endpoint: 'blog-posts', // the content type to fetch
-            wrappedByKey: 'data' // the key to unwrap the response
-        })
-    ).sort(sortItemsByDateDesc);
+    const posts =
+        (
+            await fetchApi<Article[]>({
+                endpoint: 'blog-posts', // the content type to fetch
+                wrappedByKey: 'data' // the key to unwrap the response
+            })
+        ).sort(sortItemsByDateDesc) ?? [];
 
-    const postCount = posts.length;
     return posts.map((post, index) => ({
         params: { slug: post.attributes.slug },
         props: {
@@ -43,7 +43,7 @@ const publishDate = new Date(rawPublishedAt);
         <header class="mb-8">
             <h1 class="text-3xl leading-tight font-serif font-medium sm:text-5xl sm:leading-tight">{title}</h1>
             <div class="mt-4 text-sm">
-                Publicshed <FormattedDate date={publishDate} />
+                Published <FormattedDate date={publishDate} />
             </div>
         </header>
         <div class="max-w-none prose prose-dante sm:prose-lg">
