@@ -15,8 +15,6 @@ export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
             wrappedByKey: 'data' // the key to unwrap the response
         })
     ).sort(sortItemsByDateDesc);
-    console.log('Did this run?');
-    console.log(paginate(articles, { pageSize: siteConfig.postsPerPage || 4 }));
     return paginate(articles, { pageSize: siteConfig.postsPerPage || 4 });
 }
 
